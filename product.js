@@ -1,3 +1,4 @@
+
 class Product{
     constructor(id, nome, validade) {
       this.id = id;

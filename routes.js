@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('./db');
 const Produto = require('./product');
 
+
 const router = express.Router();
 
 // Listar todos os produtos
@@ -39,8 +40,8 @@ router.post('/product', async (req, res) => {
   const { nome, validade } = req.body;
   try {
     const result = await pool.query(
-      'INSERT INTO produtos (nome, validade) VALUES ($1, $2) RETURNING *',
-      [nome, validade]
+      'INSERT INTO produtos (id, nome, validade) VALUES ($1, $2, $3) RETURNING *',
+      [id, nome, validade]
     );
     const row = result.rows[0];
     const produto = new Produto(row.id, row.nome, row.validade);
